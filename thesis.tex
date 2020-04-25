@@ -1,0 +1,443 @@
+%% ----------------------------------------
+%%
+%% NYU PhD thesis template.
+%% Created by José Koiller 2007--2008.
+%% Modified by Siddharth Krishna, 2019.
+%%
+%% ----------------------------------------
+
+
+%% Use the first of the following lines during production to
+%% easily spot "overfull boxes" in the output. Use the second
+%% line for the final version.
+%\documentclass[12pt,draft,letterpaper]{report}
+\documentclass[12pt,oneside,letterpaper]{report}
+
+
+% ----------------------------------------
+% Macro to switch between draft version and final version
+% ----------------------------------------
+
+% Use or comment this to enable/disable draft version
+% \def\draftversion{}
+\newcommand{\draftfinal}[2]{\ifdefined\draftversion#1\else#2\fi}
+\newcommand{\draftonly}[1]{\draftfinal{#1}{}}
+\newcommand{\finalonly}[1]{\draftfinal{}{#1}}
+
+
+% ----------------------------------------
+% Thesis metadata
+% ----------------------------------------
+
+%% Replace the title, name, advisor name, graduation date and dedication below
+%% with your own. Graduation months must be January, May or September.
+\newcommand{\thesistitle}{On Complete Systems of Invariants for Ternary Biquadratic Forms}
+\newcommand{\thesisauthor}{Amalie Emmy Noether}
+\newcommand{\thesisadvisor}{Professor Paul Gordan}
+\newcommand{\thesisdept}{Mathematics}
+\newcommand{\gradmonth}{September}
+\newcommand{\gradyear}{2019}
+%% If you do not want a dedication, scroll down and comment out
+%% the appropriate lines in this file.
+\newcommand{\thesisdedication}{To my dog Weierstra\ss, with affection.}
+
+
+% ----------------------------------------
+% Layout and formatting
+% ----------------------------------------
+
+% Uncomment to get a big black box to spot "overfull hboxes"
+% \setlength{\overfullrule}{5pt}
+
+
+%% Page layout (customized to letter paper and NYU requirements):
+\RequirePackage[margin=1in, includefoot, letterpaper]{geometry}
+
+
+%% Color definitions:
+\RequirePackage[prologue]{xcolor}
+\definecolor[named]{ThesisBlue}{cmyk}{1,0.1,0,0.1}
+\definecolor[named]{ThesisYellow}{cmyk}{0,0.16,1,0}
+\definecolor[named]{ThesisOrange}{cmyk}{0,0.42,1,0.01}
+\definecolor[named]{ThesisRed}{cmyk}{0,0.90,0.86,0}
+\definecolor[named]{ThesisLightBlue}{cmyk}{0.49,0.01,0,0}
+\definecolor[named]{ThesisGreen}{cmyk}{0.20,0,1,0.19}
+\definecolor[named]{ThesisPurple}{cmyk}{0.55,1,0,0.15}
+\definecolor[named]{ThesisDarkBlue}{cmyk}{1,0.58,0,0.21}
+
+% School color found from university's graphic identity site:
+% http://www.nyu.edu/employees/resources-and-services/media-and-communications/styleguide.html
+\definecolor{SchoolColor}{rgb}{0.3412, 0.0235, 0.5490} % purple
+\definecolor{chaptergrey}{rgb}{0.2600, 0.0200, 0.4600} % dialed back a little
+\definecolor{midgrey}{rgb}{0.4, 0.4, 0.4}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks,
+  linkcolor=ThesisDarkBlue,
+  citecolor=ThesisPurple,
+  urlcolor=ThesisDarkBlue,
+  filecolor=ThesisDarkBlue}
+
+
+%% Captions of Figures, tables
+\RequirePackage[labelfont={bf,sf,small,singlespacing},
+                textfont={sf,small,singlespacing},
+                % justification={justified,RaggedRight},
+                % singlelinecheck=false,
+                margin=0pt,
+                figurewithin=chapter,
+                tablewithin=chapter]{caption}
+
+%% Chapter headings, captions
+\usepackage{fix-cm}
+\RequirePackage[raggedright,sc]{titlesec}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+
+\titleformat{\chapter}[hang]
+{\Huge\sc}
+{\textcolor{SchoolColor}{\thechapter}\hsp\textcolor{gray75}{|}\hsp}
+{0pt}{\Huge\sc\raggedright}
+% [\textcolor{gray75}{|}\hsp\textcolor{SchoolColor}{\thechapter}]
+
+
+%% The following makes chapters and sections, but not subsections,
+%% appear in the TOC (table of contents). Increase to 2 or 3 to
+%% make subsections or subsubsections appear, respectively. It seems
+%% to be usual to use the "1" setting, however.
+\setcounter{tocdepth}{2}
+
+%% Sectional units up to subsubsections are numbered. To number
+%% subsections, but not subsubsections, decrease this counter to 2.
+\setcounter{secnumdepth}{3}
+
+%% Use the following commands, if desired, during production.
+%% Comment them out for final version.
+%\usepackage{layout} % defines the \layout command, see below
+%\setlength{\hoffset}{-.75in} % creates a large right margin for notes and \showlabels
+
+%% Controls spacing between lines (\doublespacing, \onehalfspacing, etc.):
+\usepackage{setspace}
+
+%% Use the line below for official NYU version, which requires
+%% double line spacing. For all other uses, this is unnecessary,
+%% so the line can be commented out.
+\finalonly{
+  \doublespacing % requires package setspace, invoked above
+}
+
+%% For generating sample text.
+%% Can be removed when you've replaced all \lipsum commands with your text.
+\usepackage{lipsum}
+
+
+% ----------------------------------------
+% Comments and TODOs:
+% ----------------------------------------
+
+% Uncomment this to remove all comments
+\newcommand{\nocomments}{}
+
+% Uncomment this to remove all TODOs
+\newcommand{\notodos}{}
+
+% Comments and TODOs
+\newcommand{\fcomment}[2]{\ifdefined\nocomments{}\else\footnote{\textcolor{red}{#1:} #2}\fi}
+\newcommand{\todo}[1]{\ifdefined\notodos{}\else\textcolor{red}{TODO\ifstrempty{#1}{}{: #1}}\fi}
+\newcommand{\ftodo}[1]{\ifdefined\notodos{}\else\fcomment{TODO}{#1}\fi}
+
+% Author comments:
+\newcommand{\aen}[1]{\fcomment{Emmy}{#1}}
+
+
+% ----------------------------------------
+% User-specific packages and macros
+% ----------------------------------------
+
+%% This inputs your auxiliary file with \usepackage's and \newcommand's:
+%% It is assumed that that file is called "defs.tex".
+\input{defs}
+
+
+% ----------------------------------------
+% Document header
+% ----------------------------------------
+
+%% Cross-referencing utilities. Use one or the other--whichever you prefer--
+%% but comment out both lines for final version.
+%\usepackage{showlabels}
+%\usepackage{showkeys}
+
+\begin{document}
+%% Produces a test "layout" page, for "debugging" purposes only.
+%% Comment out for final version.
+%\layout % requires package layout (see above, on this same file)
+
+
+%%%%%% Title page %%%%%%%%%%%
+%% Sets page numbering to "roman style" i, ii, iii, iv, etc:
+\pagenumbering{roman}
+%
+%% No numbering in the title page:
+\thispagestyle{empty}
+%
+\vspace*{25pt}
+\begin{center}
+  {\Large
+    \begin{doublespace}
+      {\textcolor{SchoolColor}{\textsc{\thesistitle}}}
+    \end{doublespace}
+  }
+  \vspace{.7in}
+
+  by
+  \vspace{.7in}
+
+  \thesisauthor
+  \vfill
+
+  \begin{doublespace}
+    \textsc{
+    A dissertation submitted in partial fulfillment\\
+    of the requirements for the degree of\\
+    Doctor of Philosophy\\
+    Department of \thesisdept\\
+    New York University\\
+    \gradmonth, \gradyear}
+  \end{doublespace}
+\end{center}
+\vfill
+
+\noindent\makebox[\textwidth]{\hfill\makebox[2.5in]{\hrulefill}}\\
+\makebox[\textwidth]{\hfill\makebox[2.5in]{\hfill\thesisadvisor}}
+
+\newpage
+
+
+%%%%%%%%%%%%% Copyright page %%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\vspace*{25pt}
+\begin{center}
+  \scshape \noindent \small \copyright \  \small  \thesisauthor \\
+  all rights reserved, \gradyear
+\end{center}
+\vspace*{0in}
+\newpage
+
+
+%%%%%%%%%%%%%% Dedication %%%%%%%%%%%%%%%%%
+%% Comment out the following lines if you do not want to dedicate
+%% this to anyone...
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Dedication}
+\vspace*{\fill}
+\begin{center}
+  \thesisdedication
+\end{center}
+\vfill
+\newpage
+
+
+%%%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%
+%% Comment out the following lines if you do not want to acknowledge
+%% anyone's help...
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+
+% \input{acknowledge}
+\lipsum[1-2]
+
+\newpage
+
+
+%%%% Abstract %%%%%%%%%%%%%%%%%%
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+\input{abstract}
+
+\newpage
+
+
+%%%% Table of Contents %%%%%%%%%%%%
+\tableofcontents
+
+
+%%%%% List of Figures %%%%%%%%%%%%%
+%% Comment out the following two lines if your thesis does not
+%% contain any figures. The list of figures contains only
+%% those figures included within the "figure" environment.
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\newpage
+
+
+%%%%% List of Tables %%%%%%%%%%%%%
+%% Comment out the following two lines if your thesis does not
+%% contain any tables. The list of tables contains only
+%% those tables included within the "table" environment.
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\newpage
+
+
+%%%%% Body of thesis starts %%%%%%%%%%%%
+\pagenumbering{arabic} % switches page numbering to arabic: 1, 2, 3, etc.
+
+
+% ----------------------------------------
+% Body of Thesis
+% ----------------------------------------
+
+\chapter{Introduction}
+\label{chp-introduction}
+
+% \input{introduction}
+
+% Sample content:
+\lipsum[1-2]
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=3]
+    \draw[step=.5cm, gray, very thin] (-1.2,-1.2) grid (1.2,1.2); 
+    \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm) arc (0:30:3mm) -- cycle; 
+    \draw[->] (-1.25,0) -- (1.25,0) coordinate (x axis);
+    \draw[->] (0,-1.25) -- (0,1.25) coordinate (y axis);
+    \draw (0,0) circle (1cm);
+    \draw[very thick,red] (30:1cm) -- node[left,fill=white] {$\sin \alpha$} (30:1cm |- x axis);
+    \draw[very thick,blue] (30:1cm |- x axis) -- node[below=2pt,fill=white] {$\cos \alpha$} (0,0);
+    \draw (0,0) -- (30:1cm);
+    \foreach \x/\xtext in {-1, -0.5/-\frac{1}{2}, 1} 
+    \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,fill=white] {$\xtext$};
+    \foreach \y/\ytext in {-1, -0.5/-\frac{1}{2}, 0.5/\frac{1}{2}, 1} 
+    \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,fill=white] {$\ytext$};
+  \end{tikzpicture}
+  \caption{A pictorial view of \refThm{thm-pythagorean}.}
+  \label{fig-pythagorean}
+\end{figure}
+
+\begin{definition}
+  A function $f$ is said to be \emph{continuous} if its derivative exists at every point.
+\end{definition}
+
+\begin{lemma}
+  Let $f$ be a function whose derivative exists in every point, then $f$ is 
+  a continuous function.
+\end{lemma}
+
+\begin{theorem}[Pythagorean theorem]
+  \label{thm-pythagorean}
+  This is a theorema about right triangles and can be summarised in the next 
+  equation 
+  \[ x^2 + y^2 = z^2 \]
+\end{theorem}
+\begin{proof}
+  I have discovered a truly marvelous proof of this, which this margin is too narrow to contain.
+\end{proof}
+
+And a consequence of \refThm{thm-pythagorean} is the statement in the next 
+corollary~\cite{lamport94}.
+
+\begin{corollary}
+  There's no right rectangle whose sides measure 3cm, 4cm, and 6cm.
+\end{corollary}
+
+\lipsum[3-5]
+
+\begin{table}
+  \centering
+  \caption{Predicted final standings of Group B.}
+  \begin{tabular}{l*{6}{c}r}
+    Team              & P & W & D & L & F  & A & Pts \\
+    \hline
+    Manchester United & 6 & 4 & 0 & 2 & 10 & 5 & 12  \\
+    Celtic            & 6 & 3 & 0 & 3 &  8 & 9 &  9  \\
+    Benfica           & 6 & 2 & 1 & 3 &  7 & 8 &  7  \\
+    FC Copenhagen     & 6 & 2 & 1 & 3 &  5 & 8 &  7  \\
+  \end{tabular}
+  \label{tab-forecast}
+\end{table}
+
+\lipsum[5-7]
+
+\chapter{Preliminaries}
+\label{chp-preliminaries}
+
+% \input{preliminaries}
+\lipsum
+
+\chapter{Proof of the Reimann Hypothesis}
+\label{chp-proof}
+
+% \input{proof}
+\lipsum
+
+\chapter{Conclusion}
+\label{chp-conclusion}
+
+% \input{conclusion}
+\lipsum
+
+
+%% If your thesis has different "Parts", use commands such as the following:
+%\part{First Part\label{part:one}}%
+% \input{chap1}
+%\input{chap2} % further chapters -- change file names to meaningful things...
+%\input{chap3}
+%\part{Second Part\label{part:two}}%
+%\input{chap4}
+%\input{chap5}
+%\input{chap6}
+
+
+%%%%% Appendices start %%%%%%%%%%%%%%%%
+%% Comment out the following if your thesis has no appendix
+
+\appendix
+
+\chapter{Appendix}
+
+% \input{appendix}
+\lipsum
+
+%% Note: If your thesis has more than one appendix, NYU requires a "list of
+%% appendices" page before the body of the thesis. I don't provide the tools
+%% to create that here, so you're on your own for that one... Sorry.
+
+
+%%%% Input bibliography file %%%%%%%%%%%%%%%
+%% For computer science dissertations, I'd recommend using the bibly package
+%% to automatically create the .bib file from your citations:
+%% https://github.com/michael-emmi/bibly
+
+\cleardoublepage
+\phantomsection
+\bibliographystyle{apalike}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+% \bibliography{dblp,references}
+
+% The following is just for the sample template,
+% I'd recommend deleting this and using the \bibliography command above
+\begin{thebibliography}{99}
+\bibitem[Lamport, 1994]{lamport94}
+  Leslie Lamport,
+  \textit{\LaTeX: a document preparation system},
+  Addison Wesley, Massachusetts,
+  2nd edition,
+  1994.
+\end{thebibliography}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

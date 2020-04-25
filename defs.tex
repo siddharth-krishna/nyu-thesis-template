@@ -1,0 +1,265 @@
+% ----------------------------------------
+% Packages
+% ----------------------------------------
+
+% 
+% Place here your \usepackage's. Some recommended packages are already included.
+%
+
+% Graphics:
+\usepackage[final]{graphicx}
+%\usepackage{graphicx} % use this line instead of the above to suppress graphics in draft copies
+%\usepackage{graphpap} % \defines the \graphpaper command
+
+% Uncomment this to indent first line of each section:
+% \usepackage{indentfirst}
+
+% Good AMS stuff:
+\usepackage{amsthm} % facilities for theorem-like environments
+\usepackage[tbtags]{amsmath} % a lot of good stuff!
+
+% Fonts and symbols:
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Set the fonts
+\RequirePackage[T1]{fontenc}
+\ifxetex
+  \RequirePackage[tt=false]{libertine}
+\else
+  \RequirePackage[tt=false, type1=true]{libertine}
+\fi
+\RequirePackage[varqu]{zi4}
+\RequirePackage[libertine]{newtxmath}
+
+
+% For typesetting inference rules
+\usepackage{mathpartir}
+% \usepackage{pftools}  % A local package
+\newcommand{\bmmax}{2}
+\usepackage{bm}
+
+% Formatting tools:
+%\usepackage{relsize} % relative font size selection, provides commands \textsmalle, \textlarger
+%\usepackage{xspace} % gentle spacing in macros, such as \newcommand{\acims}{\textsc{acim}s\xspace}
+
+% Page formatting utility:
+%\usepackage{geometry}
+
+\usepackage{booktabs}   %% For formal tables:
+                        %% http://ctan.org/pkg/booktabs
+\usepackage[labelformat=simple]{subcaption} %% For complex figures with subfigures/subcaptions
+                        %% http://ctan.org/pkg/subcaption
+% Options to subcaption are to label and refer to subfigures as Fig 1(a) etc.
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage[T1]{fontenc} % needed for scaling fancy fonts (?)
+\usepackage[utf8]{inputenc} % not sure this is needed
+
+\usepackage{amssymb}
+%\usepackage[table]{xcolor}
+
+% For code
+\usepackage[final]{listings}
+\lstset{mathescape=true}
+
+% For code highlighting
+% \usepackage{bold-extra}
+
+% Tikz
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,positioning,calc,fit,backgrounds}
+
+% To control enum item labelling/numbering
+\usepackage[shortlabels, inline]{enumitem}
+% To give custom item labels and reference them
+\makeatletter
+\newcommand{\myitem}[1][]{
+  \protected@edef\@currentlabel{#1}%
+\item[#1]
+}
+\makeatother
+
+% To stop aligned env swallowing up []s
+\usepackage{mathtools}
+
+% To use ifstrempty
+\usepackage{etoolbox}
+
+% For math mode tables
+\usepackage{array}
+% A text column in array
+\newcolumntype{L}{>$l<$}
+
+% For \llbracket and \rrbracket
+\usepackage{stmaryrd}
+
+% For dashed boxes
+\usepackage{dashbox}
+
+% For big separating conjunction
+\usepackage{scalerel}
+
+% For mathpar environment
+\usepackage{mathpartir}
+
+\usepackage{xspace}
+\usepackage{multirow}
+
+% To stop citations overflowing lines
+\usepackage{breakcites}
+
+% For citet command
+\usepackage{natbib}
+\setcitestyle{%
+    authoryear,%
+    open={[},close={]},citesep={;},%
+    aysep={},yysep={,},%
+    notesep={, }}
+\let\cite\citep
+
+%%
+%% Place here your \newtheorem's:
+%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{plain}
+
+
+% ----------------------------------------
+% Generic definitions
+% ----------------------------------------
+% Required packages: listings, tikz
+
+% A footnote without a marker
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+% \renewcommand{\emptyset}{\ensuremath{\varnothing}}
+% \newcommand{\ds}{\displaystyle}
+
+% Math stuff
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\T}{\ensuremath{\mathbb{T}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\closure}[1]{\ensuremath{\overline{#1}}}
+%\newcommand{\acim}{\textsc{acim}\xspace}
+%\newcommand{\acims}{\textsc{acim}s\xspace}
+
+\newcommand{\Land}{\bigwedge}
+\newcommand{\Lor}{\bigvee}
+\newcommand{\es}{\emptyset}
+\newcommand{\incl}{\subseteq}
+\newcommand{\impl}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\sat}{\vDash}
+\newcommand{\notsat}{\nvDash}
+\newcommand{\proves}{\vdash}
+\newcommand{\provesIff}{\mathrel{\dashv\vdash}}
+\newcommand{\boolTrue}{\top}
+\newcommand{\boolFalse}{\bot}
+
+\newcommand{\dom}{\operatorname{\mathsf{dom}}}
+\newcommand{\range}{\operatorname{\mathsf{rng}}}
+\newcommand{\restrict}[2]{{#1}|_{#2}}
+\newcommand{\pto}{\rightharpoonup}
+
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\defiff}{\vcentcolon\iff}
+
+\newcommand{\pipe}{\triangleright}
+
+%% Caligraphic
+\newcommand{\Aa}{{\mathcal{A}}}
+\newcommand{\Bb}{{\mathcal{B}}}
+\newcommand{\Cc}{{\mathcal{C}}}
+\newcommand{\Dd}{{\mathcal{D}}}
+\newcommand{\Ee}{{\mathcal{E}}}
+\newcommand{\Ff}{{\mathcal{F}}}
+\newcommand{\Gg}{{\mathcal{G}}}
+\newcommand{\Hh}{{\mathcal{H}}}
+\newcommand{\Ii}{{\mathcal{I}}}
+\newcommand{\Jj}{{\mathcal{J}}}
+\newcommand{\Kk}{{\mathcal{K}}}
+\newcommand{\Ll}{{\mathcal{L}}}
+\newcommand{\Mm}{{\mathcal{M}}}
+\newcommand{\Nn}{{\mathcal{N}}}
+\newcommand{\Oo}{{\mathcal{O}}}
+\newcommand{\Pp}{{\mathcal{P}}}
+\newcommand{\Qq}{{\mathcal{Q}}}
+\newcommand{\Rr}{{\mathcal{R}}}
+\newcommand{\Ss}{{\mathcal{S}}}
+\newcommand{\Tt}{{\mathcal{T}}}
+\newcommand{\Uu}{{\mathcal{U}}}
+\newcommand{\Vv}{{\mathcal{V}}}
+\newcommand{\Ww}{{\mathcal{W}}}
+\newcommand{\Yy}{{\mathcal{Y}}}
+\newcommand{\Zz}{{\mathcal{Z}}}
+
+% Wrappers: Parens, brackets, etc
+% \newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\paren} [1] {\ensuremath{ \left( {#1} \right) }}
+\newcommand{\bigparen} [1] {\ensuremath{ \Big( {#1} \Big) }}
+% \newcommand{\bracket}[1]{\left[#1\right]}
+\newcommand{\tuple}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+% \newcommand{\set}[1]{\ensuremath{\left\{#1\right\}}}
+\newcommand{\setcomp}[2]{\ensuremath{\left\{#1\;\middle|\;#2\right\}}}
+
+% References
+\newcommand{\refCh}[1]{Chapter~\ref{#1}}
+\newcommand{\refSc}[1]{Section~\ref{#1}}
+% \newcommand{\refSc}[1]{\S\ref{#1}}
+\newcommand{\refFig}[1]{Figure~\ref{#1}}
+\newcommand{\refDef}[1]{Definition~\ref{#1}}
+\newcommand{\refLem}[1]{Lemma~\ref{#1}}
+\newcommand{\refThm}[1]{Theorem~\ref{#1}}
+\newcommand{\refAlg}[1]{Algorithm~\ref{#1}}
+\newcommand{\refEx}[1]{Example~\ref{#1}}
+\newcommand{\refCor}[1]{Corollary~\ref{#1}}
+\newcommand{\refTab}[1]{Table~\ref{#1}}
+\newcommand{\refEq}[1]{\ensuremath{(\ref{#1})}}
+\newcommand{\refRule}[1]{(\ref{#1})}
+\newcommand{\refApp}[1]{Appendix~\ref{#1}}
+
+\newcommand{\tool}[1]{\textsf{#1}}
+\newcommand{\code}[1]{\textnormal{\small\texttt{#1}}}
+% \newcommand{\code}[1]{\text{\lstinline{#1}}}
+
+% TODO have macros for \forall and \exists
+
+\newcommand{\tick}{\ensuremath{\checkmark}}
+\newcommand{\cross}{\text{\sffamily X}}
+
+
+% ----------------------------------------
+% Paper specific macros & commands
+% ----------------------------------------
+
+
+% Put your definitions here
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End:

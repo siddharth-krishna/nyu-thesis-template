@@ -1,0 +1,193 @@
+%% ----------------------------------------
+%%
+%% NYU PhD thesis template.
+%% Created by José Koiller 2007--2008.
+%% Modified by Siddharth Krishna, 2019.
+%%
+%% This file creates a "stand-alone" title and abstract page. NYU requires
+%% several copies of this.
+%%
+%% ----------------------------------------
+
+
+%% Use the first of the following lines during production to
+%% easily spot "overfull boxes" in the output. Use the second
+%% line for the final version.
+%\documentclass[12pt,draft,letterpaper]{report}
+\documentclass[12pt,oneside,letterpaper]{report}
+
+
+% ----------------------------------------
+% Macro to switch between draft version and final version
+% ----------------------------------------
+
+% Use or comment this to enable/disable draft version
+% \def\draftversion{}
+\newcommand{\draftfinal}[2]{\ifdefined\draftversion#1\else#2\fi}
+\newcommand{\draftonly}[1]{\draftfinal{#1}{}}
+\newcommand{\finalonly}[1]{\draftfinal{}{#1}}
+
+
+% ----------------------------------------
+% Thesis metadata
+% ----------------------------------------
+
+%% Replace the title, name, advisor name, graduation date and dedication below
+%% with your own. Graduation months must be January, May or September.
+\newcommand{\thesistitle}{On Complete Systems of Invariants for Ternary Biquadratic Forms}
+\newcommand{\thesisauthor}{Amalie Emmy Noether}
+\newcommand{\thesisadvisor}{Professor Paul Gordan}
+\newcommand{\thesisdept}{Mathematics}
+\newcommand{\gradmonth}{September}
+\newcommand{\gradyear}{2019}
+%% If you do not want a dedication, scroll down and comment out
+%% the appropriate lines in this file.
+\newcommand{\thesisdedication}{To my dog Weierstra\ss, with affection.}
+
+
+% ----------------------------------------
+% Layout and formatting
+% ----------------------------------------
+
+% Uncomment to get a big black box to spot "overfull hboxes"
+% \setlength{\overfullrule}{5pt}
+
+
+%% Page layout (customized to letter paper and NYU requirements):
+\RequirePackage[margin=1in, includefoot, letterpaper]{geometry}
+
+
+%% Color definitions:
+\RequirePackage[prologue]{xcolor}
+\definecolor[named]{ThesisBlue}{cmyk}{1,0.1,0,0.1}
+\definecolor[named]{ThesisYellow}{cmyk}{0,0.16,1,0}
+\definecolor[named]{ThesisOrange}{cmyk}{0,0.42,1,0.01}
+\definecolor[named]{ThesisRed}{cmyk}{0,0.90,0.86,0}
+\definecolor[named]{ThesisLightBlue}{cmyk}{0.49,0.01,0,0}
+\definecolor[named]{ThesisGreen}{cmyk}{0.20,0,1,0.19}
+\definecolor[named]{ThesisPurple}{cmyk}{0.55,1,0,0.15}
+\definecolor[named]{ThesisDarkBlue}{cmyk}{1,0.58,0,0.21}
+
+% School color found from university's graphic identity site:
+% http://www.nyu.edu/employees/resources-and-services/media-and-communications/styleguide.html
+\definecolor{SchoolColor}{rgb}{0.3412, 0.0235, 0.5490} % purple
+\definecolor{chaptergrey}{rgb}{0.2600, 0.0200, 0.4600} % dialed back a little
+\definecolor{midgrey}{rgb}{0.4, 0.4, 0.4}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks,
+  linkcolor=ThesisDarkBlue,
+  citecolor=ThesisPurple,
+  urlcolor=ThesisDarkBlue,
+  filecolor=ThesisDarkBlue}
+
+
+%% Captions of Figures, tables
+\RequirePackage[labelfont={bf,sf,small,singlespacing},
+                textfont={sf,small,singlespacing},
+                % justification={justified,RaggedRight},
+                % singlelinecheck=false,
+                margin=0pt,
+                figurewithin=chapter,
+                tablewithin=chapter]{caption}
+
+%% Chapter headings, captions
+\usepackage{fix-cm}
+\RequirePackage[raggedright,sc]{titlesec}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+
+\titleformat{\chapter}[hang]
+{\Huge\sc}
+{\textcolor{SchoolColor}{\thechapter}\hsp\textcolor{gray75}{|}\hsp}
+{0pt}{\Huge\sc\raggedright}
+% [\textcolor{gray75}{|}\hsp\textcolor{SchoolColor}{\thechapter}]
+
+
+%% The following makes chapters and sections, but not subsections,
+%% appear in the TOC (table of contents). Increase to 2 or 3 to
+%% make subsections or subsubsections appear, respectively. It seems
+%% to be usual to use the "1" setting, however.
+\setcounter{tocdepth}{2}
+
+%% Sectional units up to subsubsections are numbered. To number
+%% subsections, but not subsubsections, decrease this counter to 2.
+\setcounter{secnumdepth}{3}
+
+%% Use the following commands, if desired, during production.
+%% Comment them out for final version.
+%\usepackage{layout} % defines the \layout command, see below
+%\setlength{\hoffset}{-.75in} % creates a large right margin for notes and \showlabels
+
+%% Controls spacing between lines (\doublespacing, \onehalfspacing, etc.):
+\usepackage{setspace}
+
+%% Use the line below for official NYU version, which requires
+%% double line spacing. For all other uses, this is unnecessary,
+%% so the line can be commented out.
+\finalonly{
+  \doublespacing % requires package setspace, invoked above
+}
+
+%% For generating sample text.
+%% Can be removed when you've replaced all \lipsum commands with your text.
+\usepackage{lipsum}
+
+
+% ----------------------------------------
+% Comments and TODOs:
+% ----------------------------------------
+
+% Uncomment this to remove all comments
+\newcommand{\nocomments}{}
+
+% Uncomment this to remove all TODOs
+\newcommand{\notodos}{}
+
+% Comments and TODOs
+\newcommand{\fcomment}[2]{\ifdefined\nocomments{}\else\footnote{\textcolor{red}{#1:} #2}\fi}
+\newcommand{\todo}[1]{\ifdefined\notodos{}\else\textcolor{red}{TODO\ifstrempty{#1}{}{: #1}}\fi}
+\newcommand{\ftodo}[1]{\ifdefined\notodos{}\else\fcomment{TODO}{#1}\fi}
+
+% Author comments:
+\newcommand{\aen}[1]{\fcomment{Emmy}{#1}}
+
+
+% ----------------------------------------
+% User-specific packages and macros
+% ----------------------------------------
+
+%% This inputs your auxiliary file with \usepackage's and \newcommand's:
+%% It is assumed that that file is called "defs.tex".
+\input{defs}
+
+
+% ----------------------------------------
+% Abstract page
+% ----------------------------------------
+
+\begin{document}
+  \begin{center}
+    Abstract of the Dissertation\bigskip
+
+    \textbf{\thesistitle}\bigskip
+
+    by\bigskip
+
+    \thesisauthor\bigskip
+
+    New York University\bigskip
+
+    \thesisadvisor, Advisor
+  \end{center}
+\bigskip
+
+\input{abstract}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
