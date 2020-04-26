@@ -12,4 +12,6 @@ How to use:
 - Replace the content under "Body of Thesis" with your thesis.
   I'd recommend using a file per chapter and using `\input` commands to include them in `thesis.tex`.
 
+The template is also available on [Overleaf](https://www.overleaf.com/latex/templates/nyu-gsas-thesis-template/qdpfnvbtzsdq).
+
 I hope this helps! Feedback (via issues) and updates (via pull requests) welcome.
