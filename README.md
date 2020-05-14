@@ -4,6 +4,9 @@ A PhD dissertation/thesis template satisfying the [requirements](https://gsas.ny
 
 This is based on a template by José Koiller (2007-2008).
 
+**Disclaimer**: This template is not officially endorsed by or maintained by the GSAS or the CS department, hence it may not be up-to-date with GSAS's requirements.
+If you are using this template for your thesis, it remains your own responsibility to ensure that the thesis is compliant with current GSAS [thesis guidelines](https://gsas.nyu.edu/content/nyu-as/gsas/academics/submitting-your-dissertation.html).
+
 How to use:
 - The `thesis.tex` file is the main file for the thesis.
   `abstractpage.tex` is to create a stand-alone abstract page (required for the preliminary submission).
@@ -14,4 +17,4 @@ How to use:
 
 The template is also available on [Overleaf](https://www.overleaf.com/latex/templates/nyu-gsas-thesis-template/qdpfnvbtzsdq).
 
-I hope this helps! Feedback (via issues) and updates (via pull requests) welcome.
+I hope this helps! Feedback (via issues) and updates (via pull requests) are welcome.
